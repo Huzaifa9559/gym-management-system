@@ -1,0 +1,53 @@
+
+#include <iostream>
+using namespace std;
+class vehicle {
+private:
+	string make, model;
+	int year;
+public:
+	vehicle(string make, string model, int year) {
+		this->make = make;
+		this->model = model;
+		this->year = year;
+	}
+	void display_vehicle() {
+		cout << "Make: " << make << endl
+			<< "Model: " << model << endl
+			<< "Year: " << year << endl;
+	}
+};
+class car :public vehicle {
+private:
+	int doors;
+	float fuel;
+public:
+	car(string make, string model, int year,
+		int doors, float fuel) :vehicle(make, model, year) {
+		this->doors = doors;
+		this->fuel = fuel;
+	}
+	void display_car() {
+		display_vehicle();
+		cout << "Number of Doors: " << doors << endl
+			<< "Fuel efficiency: " << fuel * 100 << endl;
+	}
+};
+class electric_car :public car {
+private:
+	int battery;
+public:
+	electric_car(string make, string model, int year,
+		int doors, float fuel, int battery) :car(make, model, year, doors, fuel) {
+		this->battery = battery;
+	};
+	void display_electric() {
+		display_car();
+		cout << "Battery life: " << battery;
+	}
+};
+int main() {
+	electric_car car("toyotta", "VXR", 2016, 4, 0.6, 100);
+	car.display_electric();
+}
+
